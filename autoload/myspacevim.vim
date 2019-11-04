@@ -67,6 +67,8 @@ function! myspacevim#after() abort
 
   "更新tags
   map tt :!ctags -R<cr><cr>
+  "更新tag着色文件
+  map tup :UpdateTypesFile<cr>
 
   "映射*到gd
   map gd *
@@ -76,6 +78,8 @@ function! myspacevim#after() abort
   "分割窗口并在当前窗口中传向定义
   map gk :call MyMarkWordCur()<cr>
 
+  "修改S为把当前词替换成之前复制的内容
+  map S viw"0p
   "系统复制粘贴
   map <unique> <leader>y "*y
   map <unique> <leader>p "*p

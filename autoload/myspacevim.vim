@@ -4,8 +4,8 @@ function! MySavePos()
   let g:g_save_cursor = getpos(".")
 endfunction
 
-function! MySavePos()
-  let g:g_save_cursor = getpos(".")
+function! MySetPos()
+    call setpos('.', g:g_save_cursor)
 endfunction
 
 function! MyMarkWord()

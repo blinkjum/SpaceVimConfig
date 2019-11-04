@@ -68,6 +68,9 @@ function! myspacevim#after() abort
   "更新tags
   map tt :!ctags -R<cr><cr>
 
+  "映射*到gd
+  map gd *
+
   "分割窗口并在新窗口中传向定义
   map gl :call MyMarkWord()<cr>gd:call MySetPos()<cr>
   "分割窗口并在当前窗口中传向定义

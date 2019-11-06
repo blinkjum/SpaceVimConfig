@@ -34,6 +34,8 @@ func! myspacevim#before() abort
   call SpaceVim#custom#SPC('nore', [ 'f',  'f'], 'Leaderf file', 'search file in prj', 1)
   call SpaceVim#custom#SPC('nore', [ 'f',  'w'], 'LeaderfLineAll', 'search word in prj', 1)
 
+  "easymotion 映射
+  map E <Plug>(easymotion-bd-e)
 endf
 
 "!!!!!!!!!!!!!!!!!!!!!!!!!启动函数 bootstrap_after 将在 VimEnter autocmd 之后执行
@@ -70,8 +72,8 @@ function! myspacevim#after() abort
   "更新tag着色文件
   map tup :UpdateTypesFile<cr>
 
-  "映射*到gd
-  map gd *
+  "映射#到gd
+  map gd #
 
   "分割窗口并在新窗口中传向定义
   map gl :call MyMarkWord()<cr>gd:call MySetPos()<cr>

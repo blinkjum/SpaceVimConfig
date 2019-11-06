@@ -13,7 +13,7 @@
     # layer
     colorscheme = "molokai"
     colorscheme_bg = "dark"
-    guifont = "Ubuntu Mono:h13"
+    guifont = "Ubuntu Mono:h14"
     # Disable guicolors in basic mode, many terminal do not support 24bit
     # true colors
     enable_guicolors = true
@@ -26,57 +26,58 @@
     enable_statusline_mode = false
     bootstrap_before = "myspacevim#before"
     bootstrap_after = "myspacevim#after"
-    
-# Enable autocomplete layer
-[[layers]]
-name = 'autocomplete'
-auto-completion-return-key-behavior = "complete"
-auto-completion-tab-key-behavior = "smart"
+    # 恢复 s 按键原先的功能
+    windows_leader = ""  
+    #修改默认的缩进为4个空格 
+    default_indent = 4
 
-[[layers]]
-name = 'shell'
-default_position = 'top'
-default_height = 30
+# Enable autocomplete layer
+    [[layers]]
+    name = 'autocomplete'
+    auto-completion-return-key-behavior = "complete"
+    auto-completion-tab-key-behavior = "smart"
+
+    [[layers]]
+    name = 'shell'
+    default_position = 'top'
+    default_height = 30
 
 #模糊搜索
-[[custom_plugins]]
-name = "Yggdroot/LeaderF"
-merged = 0
+    [[custom_plugins]]
+    name = "Yggdroot/LeaderF"
+    merged = 0
 
 
-[[custom_plugins]]
-name = "tomasr/molokai"
-merged = false
-
-
-# [[custom_plugins]]
-# name = "sickill/vim-monokai"
-# merged = false
-
+    [[custom_plugins]]
+    name = "tomasr/molokai"
+    merged = false
 
 #mark变色
-[[custom_plugins]]
-name = "vim-scripts/Mark"
-merged = false
+    [[custom_plugins]]
+    name = "vim-scripts/Mark"
+    merged = false
 
 #函数名高亮
-[[custom_plugins]]
-name = "vim-scripts/taghighlight"
-merged = false
+    [[custom_plugins]]
+    name = "vim-scripts/taghighlight"
+    merged = false
 
 # [[layers]]
-  # name = "checkers"
-  # show_cursor_error = false
+      # name = "checkers"
+      # show_cursor_error = false
 # 禁用neomake语法检测
-  # enable_neomake = false
+      # enable_neomake = false
 
 
-[[layers]]
-  name = "cscope"
+    [[layers]]
+      name = "cscope"
 
-[[layers]]
-  name = "tools#dash"
+    [[layers]]
+      name = "tools#dash"
 
 
-[[layers]]
-  name = "git"
+    [[layers]]
+      name = "git"
+
+    [[layers]]
+     name = "tools"

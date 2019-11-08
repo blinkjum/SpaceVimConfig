@@ -47,7 +47,12 @@
     name = "Yggdroot/LeaderF"
     merged = 0
 
+#全局搜索
+    [[custom_plugins]]
+    name = "dyng/ctrlsf.vim"
+    merged = false
 
+#mark主�??
     [[custom_plugins]]
     name = "tomasr/molokai"
     merged = false

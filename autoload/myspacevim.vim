@@ -31,11 +31,23 @@ func! myspacevim#before() abort
 " -----------------------------------------------------------
 " ----------------------Leaderf设置--------------------------
 " -----------------------------------------------------------
-  "示例：添加一个以 SPC 为前缀的快捷键
-  "call SpaceVim#custom#SPCGroupName(['G'], '+TestGroup')
-  "ccall SpaceVim#custom#SPC('nore', ['G', 't'], 'echom 1', 'echomessage 1', 1)
-  call SpaceVim#custom#SPC('nore', [ 'f',  'f'], 'Leaderf file', 'search file in prj', 1)
-  call SpaceVim#custom#SPC('nore', [ 'f',  'w'], 'LeaderfLineAll', 'search word in prj', 1)
+  let g:Lf_PreviewInPopup = 1
+  "指定 popup window / floating window 的位置
+  let g:Lf_PreviewHorizontalPosition = 'center'
+  "指定 popup window / floating window 的宽度。
+  let g:Lf_PreviewPopupWidth = 0
+
+  let g:Lf_RootMarkers = ['.project', '.root', '.svn', '.git']
+  let g:Lf_WorkingDirectoryMode = 'Ac'
+  let g:Lf_WindowHeight = 0.30
+  let g:Lf_CacheDirectory = expand('~/.vim/cache')
+
+  " let g:Lf_ShortcutF = '<c-p>'
+  noremap <c-n> :LeaderfFunction!<cr>
+  " noremap <c-m> :LeaderfRgRecall<cr>
+  "全局搜索
+  noremap <c-f> :<C-U><C-R>=printf("Leaderf! rg --stayOpen -e %s ", expand("<cword>"))<CR>
+
 
 " -----------------------------------------------------------
 " ---------------------easymotion设置------------------------
@@ -43,22 +55,24 @@ func! myspacevim#before() abort
   "easymotion 特殊映射，其他不变
   map E <Plug>(easymotion-e)
   map B <Plug>(easymotion-b)
+
+
 " -----------------------------------------------------------
 " ---------------------CtrlsF设置----------------------------
 " -----------------------------------------------------------
   "ctrlsf设置 使用rg(ripgrep)搜索
-  let g:ctrlsf_ackprg = 'rg'
+  " let g:ctrlsf_ackprg = 'rg'
   "搜索结果（正常模式和紧凑模式）都不自动关闭
-  let g:ctrlsf_auto_close = {
+  " let g:ctrlsf_auto_close = {
               \ "normal" : 0,
               \ "compact": 0
               \}
   "大小写不敏感
-  let g:ctrlsf_case_sensitive='no'
+  " let g:ctrlsf_case_sensitive='no'
   "搜索路径为当前工程
-  let g:ctrlsf_default_root='project' 
+  " let g:ctrlsf_default_root='project'
   "光标自动聚焦到搜索结果窗口
-  let g:ctrlsf_auto_focus = {
+  " let g:ctrlsf_auto_focus = {
               \ "at": "done",
               \ "duration_less_than": 1500
               \ }
@@ -67,20 +81,8 @@ func! myspacevim#before() abort
   "默认搜索结果窗口为紧凑模式
   " let g:ctrlsf_default_view_mode = 'compact'
   "使用 Ctrl + f 查找当前光标下的单词
-  nmap <C-F> <Plug>CtrlSFCwordPath
+  " nmap <C-F> <Plug>CtrlSFCwordPath
 
-" -----------------------------------------------------------
-" ---------------------cscope设置----------------------------
-" -----------------------------------------------------------
-  "cscope 映射
-  " map  ts :cscope find s  <c-r>=expand('<cword>')<cr><cr>
-  " map  tg :cscope find g  <c-r>=expand('<cword>')<cr><cr>
-  " map  tc :cscope find c  <c-r>=expand('<cword>')<cr><cr>
-  " map  tt :cscope find t  <c-r>=expand('<cword>')<cr><cr>
-  " map  te :cscope find e  <c-r>=expand('<cword>')<cr><cr>
-  " map  tf :cscope find f  <c-r>=expand('<cfile>')<cr><cr>
-  " map  ti :cscope find i ^<c-r>=expand('<cfile>')<cr>$<cr>
-  " map  td :cscope find d  <c-r>=expand('<cword>')<cr><cr>
 
 " -----------------------------------------------------------
 " ---------------------ctags设置----------------------------
@@ -90,6 +92,59 @@ func! myspacevim#before() abort
   "更新tag着色文件
   map tup :UpdateTypesFile<cr>
 
+  let g:gutentags_project_root = ['.root', '.svn', '.git', '.project']
+  let g:gutentags_ctags_tagfile = '.tags'
+  let s:vim_tags = expand('~/.vim/cache/tags')
+  let g:gutentags_cache_dir = s:vim_tags
+  if !isdirectory(s:vim_tags)
+      silent! call mkdir(s:vim_tags, 'p')
+  endif
+  let g:gutentags_ctags_extra_args = ['--fields=+niazS', '--extra=+q']
+  let g:gutentags_ctags_extra_args += ['--c++-kinds=+px']
+  let g:gutentags_ctags_extra_args += ['--c-kinds=+px']
+  let g:gutentags_ctags_extra_args += ['--output-format=e-ctags']
+
+
+" -----------------------------------------------------------
+" ---------------------ycm设置----------------------------
+" -----------------------------------------------------------
+"
+let g:ycm_confirm_extra_conf = 1
+let g:ycm_max_diagnostics_to_display = 0
+
+set completeopt=menu,menuone
+let g:ycm_add_preview_to_completeopt = 0
+" 开启实时错误或者warning的检测
+"let g:ycm_show_diagnostics_ui = 0
+let g:ycm_server_log_level = 'info'
+
+let g:ycm_collect_identifiers_from_comments_and_strings = 1
+" 语法关键字补全
+let g:ycm_seed_identifiers_with_syntax=1
+" 补全功能在注释中同样有效
+let g:ycm_complete_in_strings=1
+" 从第二个键入字符就开始罗列匹配项
+let g:ycm_min_num_identifier_candidate_chars = 2
+let g:ycm_key_invoke_completion = '<c-z>'
+noremap <c-z> <NOP>
+let g:ycm_semantic_triggers =  {
+            \ 'c,cpp,python,java,go,erlang,perl': ['re!\w{2}'],
+            \ 'cs,lua,javascript': ['re!\w{2}'],
+            \ }
+"ycm白名单
+let g:ycm_filetype_whitelist = { 
+            \'c' : 1, 
+            \'cpp' : 1, 
+            \'python' : 1,
+            \'sh':1,
+            \}
+
+
+" -----------------------------------------------------------
+" ---------------------Mundo设置----------------------------
+" -----------------------------------------------------------
+  nnoremap <A-u> :MundoToggle<CR>
+  
 
 " -----------------------------------------------------------
 " ------------------------end--------------------------------

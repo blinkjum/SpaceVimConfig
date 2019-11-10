@@ -30,59 +30,84 @@
     windows_leader = ""  
     #修改默认的缩进为4个空格 
     default_indent = 4
+    #使用nerdtree文件树
+    filemanager = "nerdtree"
+    filetree_direction = "left"
+    enable_vimfiler_gitstatus = true
+    enable_ycm = true
+    enable_neomake = false
+    enable_ale = false
+
 
 # Enable autocomplete layer
-    [[layers]]
-    name = 'autocomplete'
-    auto-completion-return-key-behavior = "complete"
-    auto-completion-tab-key-behavior = "smart"
+   [[layers]]
+   name = 'autocomplete'
+   auto-completion-return-key-behavior = "complete"
+   auto-completion-tab-key-behavior = "smart"
+   enable = false
 
-    [[layers]]
-    name = 'shell'
-    default_position = 'top'
-    default_height = 30
-
-#模糊搜索
-    [[custom_plugins]]
-    name = "Yggdroot/LeaderF"
-    merged = 0
-
-#全局搜索
-    [[custom_plugins]]
-    name = "dyng/ctrlsf.vim"
-    merged = false
-
-#mark主�??
-    [[custom_plugins]]
-    name = "tomasr/molokai"
-    merged = false
-
-#mark变色
-    [[custom_plugins]]
-    name = "vim-scripts/Mark"
-    merged = false
-
-#函数名高亮
-    [[custom_plugins]]
-    name = "vim-scripts/taghighlight"
-    merged = false
+   [[layers]]
+   name = 'shell'
+   default_position = 'top'
+   default_height = 30
 
 # [[layers]]
-      # name = "checkers"
-      # show_cursor_error = false
-# 禁用neomake语法检测
-      # enable_neomake = false
+  name = "checkers"
+  show_cursor_error = false  
+  enable = false
 
 
-    [[layers]]
-      name = "cscope"
-
-    [[layers]]
-      name = "tools#dash"
+   [[layers]]
+   name = "git"
 
 
-    [[layers]]
-      name = "git"
+#模糊搜索
+   [[custom_plugins]]
+   name = "Yggdroot/LeaderF"
+   merged = 0
 
-    [[layers]]
-     name = "tools"
+#全局搜索
+# [[custom_plugins]]
+# name = "dyng/ctrlsf.vim"
+# merged = false
+
+#mark主题
+   [[custom_plugins]]
+   name = "tomasr/molokai"
+   merged = false
+
+#mark变色
+   [[custom_plugins]]
+   name = "vim-scripts/Mark"
+   merged = false
+
+#函数名高亮
+   [[custom_plugins]]
+   name = "vim-scripts/taghighlight"
+   merged = false
+
+   
+#ale语法检查
+# [[custom_plugins]]
+# name = "dense-analysis/ale"
+# merged = false
+
+#自动更新tag
+   [[custom_plugins]]
+   name = "ludovicchabant/vim-gutentags"
+   merged = false
+
+#Mundo
+   [[custom_plugins]]
+   name = "simnalamburt/vim-mundo"
+   merged = false
+
+#YouCompleteMe
+    [[custom_plugins]]
+    name = "ycm-core/YouCompleteMe"
+    merged = false
+
+#vim-wakatime
+    [[custom_plugins]]
+    name = "wakatime/vim-wakatime"
+    merged = false
